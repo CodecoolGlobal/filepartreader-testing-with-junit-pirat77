@@ -9,13 +9,16 @@ import java.io.IOException;
 import static org.junit.Assert.*;
 
 public class FilePartReaderTest {
+    FilePartReader filePartReader;
 
     @Before
     public void setUp() throws Exception {
+        filePartReader = new FilePartReader();
     }
 
     @After
     public void tearDown() throws Exception {
+        filePartReader = null;
     }
 
     @Test
@@ -24,12 +27,42 @@ public class FilePartReaderTest {
 
     @Test
     public void read() throws IOException {
-        assertEquals(fullText, (new FilePartReader()).read());
+        assertEquals(fullText, (filePartReader.read()));
     }
 
     @Test
     public void readLines() {
+        filePartReader.setup("src/main/resources/txt.asc", 6, 32);
+        assertEquals(from6to32, filePartReader.readLines());
     }
+
+    private String from6to32 = "    X-COM seemed to come out of nowhere. Its release was not preceded by an enormous marketing campaign with an enormous amount of hype. It had no video demo playing in the front window of Babbages, it wasn’t advertised twelve months in advance on glossy foldout magazine inserts, it had no flashing point-of-purchase kiosks. It didn’t come in a box designed by origamists from the school of abstract expressionism. It featured no full-motion video starring the best TV actors of the 80s; it had no voice-overs. It offered neither Super VGA graphics, nor General MIDI support. It wasn’t Doom-like, Myst-like, or otherwise like a hit game from the previous season; it didn’t steal the best features from several other successful games. It wasn’t even on a CD-ROM!\n" +
+            "\n" +
+            "    In short, if you plugged X-COM’s variables into the “success formula” currently in use by the majority of large game companies, you’d come up with a big, fat goose egg. According to the prevailing wisdom, there’s no way X-COM could survive in today’s gaming marketplace. And yet it sold and sold, and gamers played on and on.\n" +
+            "\n" +
+            "    — Chris Lombardi, writing in the April 1995 issue of Computer Gaming World\n" +
+            "\n" +
+            "In the early days of game development, there existed little to no separation between the roles of game programmer and game designer. Those stalwart pioneers who programmed the games they themselves designed could be grouped into two broad categories, depending on the side from which they entered the field. There were the technologists, who were fascinated first and foremost with the inner workings of computers, and chose games as the most challenging, creatively satisfying type of software to which they could apply their talents. And then there were those who loved games themselves above all else, and learned to program computers strictly in order to make better, more exciting ones than could be implemented using only paper, cardboard, and the players’ imaginations. Julian Gollop, the mastermind behind the legendary original X-COM, fell most definitely into this latter category. He turned to the computer only when the games he wanted to make left him no other choice.\n" +
+            "\n" +
+            "Growing up in the English county of Essex, Julian and his younger brother Nick lived surrounded by games, courtesy of their father. “Every Christmas, we didn’t watch TV, we’d play games endlessly,” Julian says. From Cluedo, they progressed to Escape from Colditz, then on to the likes of Sniper! and Squad Leader.\n" +
+            "\n" +
+            "Julian turned fifteen in 1980, the year that the Sinclair ZX80 arrived to set off a microcomputer fever all across Britain, but he was initially immune to the affliction. Unimpressed by the simplistic games he saw being implemented on those early machines, which often had as little as 1 K of memory, he started making his own designs to be played the old-fashioned way, face-to-face around a tabletop. It was only when he hit a wall of complexity with one of them that he reassessed the potential of computers.\n" +
+            "\n" +
+            "The game in question was called Time Lords; as the name would imply, it was based on the Doctor Who television serials. It asked two to five players to travel through time and space and alter the course of history to their advantage, but grew so complex that it came to require an additional person to serve in the less-than-rewarding capacity of referee.\n" +
+            "\n" +
+            "By this point, it was 1982, and a friend of Julian’s named Andy Greene had acquired one of the first BBC Micros. Its relatively cavernous 32 K of memory opened up the possibility of using the computer as a referee instead of a bored human. Greene coded up the program in BASIC, staying faithful to Julian’s board game to the extent of demanding that players leave the room when it wasn’t their turn, so as not to see anything they weren’t supposed to of their opponents’ actions. The owner of the tabletop-games store where Julian shopped was so impressed with the result that he founded a new company, Red Shift Games, in order to publish it. They all traveled to computer fairs together, carrying copies of the computerized Time Lords packaged in Ziploc baggies. The game didn’t take the world by storm — Personal Computer News, one of the few publications to review it, pronounced it a “bored game” instead of a board game — but it was a start.\n" +
+            "\n" +
+            "The two friends next made Islandia, another multiplayer strategy game of a similar stripe. In the meantime, Julian acquired a Sinclair Spectrum, the cheap and cheerful little machine destined to drive British computer gaming for the next half-decade. Having now a strong motivation to learn to program it, Julian did just that. His first self-coded game, and his first on the Spectrum, appeared in 1984 in the form of Nebula, a conquer-the-galaxy exercise that for the first time offered a computer opponent to play against.\n" +
+            "\n" +
+            "The artificial intelligence disappeared again from his next game, but it mattered not at all. Rebelstar Raiders was the prototype for Julian Gollop’s most famous work. In contrast to the big-picture strategy of his earlier games, it honed in on individual soldiers in conflict with one another in a Starship Troopers-like science-fictional milieu. Still, it was very much based on the board games he loved; there was a lot of Sniper! and Squad Leader in its turn-based design. Despite being such a cerebral game, despite being one that you couldn’t even play without a mate to hand, it attracted considerable attention. Red Shift faded out of existence shortly thereafter as its owner lost interest in the endeavor, but Rebelstar Raiders had already made Julian’s reputation, such that other publishers were now knocking at his door.\n" +
+            "\n" +
+            "Rebelstar Raiders, the first of Julian Gollop’s turn-based tactical-combat games. Ten years later, the approach would culminate in X-COM.\n" +
+            "\n" +
+            "It must have been a thrill for Julian Gollop the board-game fanatic when Games Workshop, the leading British publisher of hobbyist tabletop games, signed him to make a computer game for their new — if ultimately brief-lived — digital division. Chaos, a spell-slinging fantasy free-for-all ironically based to some extent on a Games Workshop board game known as Warlock — not that Julian told them that! — didn’t sell as well as Rebelstar Raiders, although it has since become something of a cult classic.\n" +
+            "\n" +
+            "So, understandably, Julian went where the market was. Between 1986 and 1988, he produced three more iterations on the Rebelstar Raiders concept, each boasting computer opponents as well as multiplayer options and each elaborating further upon the foundation of its predecessor. Game designers are a bit like authors in some ways. Some authors — like, say, Margaret Atwood — try their hands at a wide variety of genres and approaches, while others — like, say, John Cheever — compulsively sift through the same material in search of new nuggets of insight. Julian became, in the minds of the British public at least, an example of the Cheever type of designer. “It could be said by the cruelest among us that Julian has only ever written one game,” wrote the magazine New Computer Express in 1990, “but has released various substantially enhanced versions of it over the years.”\n" +
+            "\n" +
+            "Of those enhanced versions, Julian published Rebelstar and Rebelstar 2: Alien Encounter through Firebird as a lone-wolf developer, then published Laser Squad through a small outfit known as Blaze Software. Before he made this last game, he founded a company called Target Games — soon to be renamed to the less generic Mythos Games — with his father as silent partner and his brother Nick in an active role; the latter had by now become an accomplished programmer in his own right, in fact surpassing Julian’s talents in that area. In 1990, the brothers made the Chaos sequel Lords of Chaos together in order to prove to the likes of New Computer Express that Julian was at least a two-trick pony. And then came the series of events that would lead to Julian Gollop, whose games were reasonably popular in Britain but virtually unknown elsewhere, becoming one of the acknowledged leading lights of strategy gaming all over the world.\n";
 
     private String fullText = "The Digital Antiquarian\n" +
             "This Week on The Analog Antiquarian\t\n" +

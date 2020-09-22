@@ -33,9 +33,22 @@ public class FilePartReader {
         return output.toString();
     }
 
-    public String readLines(){
+    public String readLines() {
         StringBuilder output = new StringBuilder();
+        try {
+            String[] lines;
+            String fileContent = read();
+            lines = fileContent.split("\n");
+            if (((lines.length < fromLine) || (lines.length < toLine))) {
+                throw new IllegalArgumentException();
+            }
+            for (int i = fromLine-1; i <toLine; i++) {
+                output.append(lines[i]);
+                output.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return output.toString();
     }
-
 }
