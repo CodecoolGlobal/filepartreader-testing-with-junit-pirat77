@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FilePartReader {
-    private String filePath;
-    private Integer fromLine;
-    private Integer toLine;
+    public String filePath;
+    public Integer fromLine;
+    public Integer toLine;
 
     FilePartReader(){
         filePath = "src/main/resources/txt.asc";

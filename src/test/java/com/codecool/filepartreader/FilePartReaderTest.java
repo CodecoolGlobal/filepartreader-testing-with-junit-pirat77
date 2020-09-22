@@ -23,6 +23,10 @@ public class FilePartReaderTest {
 
     @Test
     public void setup() {
+        filePartReader.setup("sianko", 2, 23);
+        assertEquals("sianko", filePartReader.filePath);
+        assertEquals((Integer)2, filePartReader.fromLine);
+        assertEquals((Integer)23, filePartReader.toLine);
     }
 
     @Test
