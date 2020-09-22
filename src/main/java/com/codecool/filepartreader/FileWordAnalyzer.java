@@ -35,9 +35,23 @@ public class FileWordAnalyzer {
         return outputList;
     }
 
+    public boolean isPalindrome(String word){
+        char[] chars = word.toCharArray();
+        int i = 0;
+        int j = chars.length-1;
+        while (i<j){
+            if (chars[i] != chars[j]) return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+
     public List<String> getStringsWhichPalindromes(){
         List<String> outputList = new ArrayList<>();
-        String linesToAnalyze = filePartReader.readLines();
+        Arrays.stream(extractWordsFromString(filePartReader.readLines()))
+                .filter(w -> isPalindrome(w))
+                .forEach(w -> outputList.add(w));
         return outputList;
     }
 }
