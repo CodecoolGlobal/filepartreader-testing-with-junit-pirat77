@@ -1,5 +1,7 @@
 package com.codecool.filepartreader;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class FilePartReader {
@@ -8,7 +10,7 @@ public class FilePartReader {
     private Integer toLine;
 
     FilePartReader(){
-        filePath = "./txt.asc";
+        filePath = "src/main/resources/txt.asc";
         fromLine = 1;
         toLine = 1024;
     }
@@ -21,7 +23,13 @@ public class FilePartReader {
     }
 
     public String read() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
         StringBuilder output = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null){
+            output.append(line);
+            output.append("\n");
+        }
         return output.toString();
     }
 
