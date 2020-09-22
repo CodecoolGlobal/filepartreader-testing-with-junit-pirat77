@@ -31,7 +31,9 @@ public class FileWordAnalyzerTest {
 
     @Test
     public void getWordsContainingSubstring() {
-
+        fileWordAnalyzer.getFilePartReader().setup("src/main/resources/alphabet.asc", 1, 11);
+        List<String> containingKa = fileWordAnalyzer.getWordsContainingSubstring("ka");
+        assertArrayEquals(new String[]{"kakao", "katamaran", "katana", "solanka"}, containingKa.stream().sorted().toArray());
     }
 
     @Test

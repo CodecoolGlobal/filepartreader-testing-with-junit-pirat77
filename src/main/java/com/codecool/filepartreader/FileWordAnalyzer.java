@@ -21,13 +21,17 @@ public class FileWordAnalyzer {
 
     public List<String> getWordsOrderedAlphabetically(){
         List<String> outputList = new ArrayList<>();
-        Arrays.stream(extractWordsFromString(filePartReader.readLines())).sorted().forEach(w -> outputList.add(w));
+        Arrays.stream(extractWordsFromString(filePartReader.readLines()))
+                .sorted()
+                .forEach(w -> outputList.add(w));
         return outputList;
     }
 
     public List<String> getWordsContainingSubstring(String subString){
         List<String> outputList = new ArrayList<>();
-        String linesToAnalyze = filePartReader.readLines();
+        Arrays.stream(extractWordsFromString(filePartReader.readLines()))
+                .filter(w -> w.contains(subString))
+                .forEach(w -> outputList.add(w));
         return outputList;
     }
 
