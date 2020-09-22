@@ -38,6 +38,8 @@ public class FileWordAnalyzerTest {
 
     @Test
     public void getStringsWhichPalindromes() {
-
+        fileWordAnalyzer.getFilePartReader().setup("src/main/resources/wordlock.asc", 1, 4);
+        List<String> palindromes = fileWordAnalyzer.getStringsWhichPalindromes();
+        assertArrayEquals(new String[]{"kajak", "kak","sos"}, palindromes.stream().sorted().toArray());
     }
 }
