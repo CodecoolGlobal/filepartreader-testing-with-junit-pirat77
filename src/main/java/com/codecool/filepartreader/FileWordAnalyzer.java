@@ -16,7 +16,7 @@ public class FileWordAnalyzer {
     }
 
     public String[] extractWordsFromString(String string){
-        return string.split("[^a-zA-z]");
+        return string.split("[^a-zA-z]+");
     }
 
     public List<String> getWordsOrderedAlphabetically(){

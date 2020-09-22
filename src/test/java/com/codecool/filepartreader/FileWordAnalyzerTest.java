@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
@@ -23,7 +24,9 @@ public class FileWordAnalyzerTest {
 
     @Test
     public void getWordsOrderedAlphabetically() {
-
+        fileWordAnalyzer.getFilePartReader().setup("src/main/resources/alphabet.asc", 1, 11);
+        List<String> orderedOutput = fileWordAnalyzer.getWordsOrderedAlphabetically();
+        assertArrayEquals(new String[]{"kakao", "katamaran", "katana", "koza", "krowa", "solanka", "ziemniak", "zonk"}, orderedOutput.toArray());
     }
 
     @Test
