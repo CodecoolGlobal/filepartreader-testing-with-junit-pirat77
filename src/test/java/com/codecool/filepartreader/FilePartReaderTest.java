@@ -21,6 +21,11 @@ public class FilePartReaderTest {
         filePartReader = null;
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void wrongSetupArgument(){
+        filePartReader.setup("sinako", 32, 2);
+    }
+
     @Test
     public void setup() {
         filePartReader.setup("sianko", 2, 23);

@@ -7,24 +7,29 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FileWordAnalyzerTest {
-
+    private FileWordAnalyzer fileWordAnalyzer;
     @Before
     public void setUp() throws Exception {
+        this.fileWordAnalyzer = new FileWordAnalyzer(new FilePartReader());
     }
 
     @After
     public void tearDown() throws Exception {
+        this.fileWordAnalyzer = null;
     }
 
     @Test
     public void getWordsOrderedAlphabetically() {
+
     }
 
     @Test
     public void getWordsContainingSubstring() {
+
     }
 
     @Test
     public void getStringsWhichPalindromes() {
+    
     }
 }
